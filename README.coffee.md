@@ -2,22 +2,32 @@
 
 ## Configuration
 
+### Select a storage engine
+
 Choose a [storage engines][storage-engines] for Sourced and initialize:
 
     storage = require("sourced-storage-mongo") "localhost/sourced"
+
+### Create the service
 
 Now you can create an instance of a Sourced [Service][class-service]
 
     service = require("sourced").service storage
 
+### Define a schema
+
 Next we need to define a [Schema][class-schema]:
 
     userSchema = {}
+
+#### Construction
 
 The schema allows for custom construction of your resource:
 
     userSchema.construct = (resource, done) ->
       new User id: resource.id
+
+#### Events
 
 It also allows you to customize the events for a given resource, and how they
 are applied to the object. Let's define what our user looks like when applying
@@ -58,4 +68,4 @@ Then, they updated their profile:
     revision.add "ProfileUpdated",
       name: "John Doe", title: "Software Developer"
 
-Now we have a revision 
+Now we have a revision
