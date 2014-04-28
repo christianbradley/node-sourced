@@ -1,71 +1,75 @@
-# Sourced
+Table of Contents
+================================================================================
 
-## Configuration
-
-### Select a storage engine
-
-Choose a [storage engines][storage-engines] for Sourced and initialize:
-
-    storage = require("sourced-storage-mongo") "localhost/sourced"
-
-### Create the service
-
-Now you can create an instance of a Sourced [Service][class-service]
-
-    service = require("sourced").service storage
-
-### Define a schema
-
-Next we need to define a [Schema][class-schema]:
-
-    userSchema = {}
-
-#### Construction
-
-The schema allows for custom construction of your resource:
-
-    userSchema.construct = (resource, done) ->
-      new User id: resource.id
-
-#### Events
-
-It also allows you to customize the events for a given resource, and how they
-are applied to the object. Let's define what our user looks like when applying
-a "Registered" event:
-
-    userSchema.onRegistered = (user, event, done) ->
-      payload = event.payload
-      user.username = payload.username
-      user.email = payload.email
-      done user
-
-Next, let's define what it looks like when applying a "ProfileUpdated" event:
-
-    userSchema.onProfileUpdated = (user, event, done) ->
-      payload = event.payload
-      user.profile.name = payload.name
-      user.profile.title = payload.title
-      done user
+* [Installation]
+* [Usage]
+* [API]
 
 
-## Revising a resource
 
-First we need to create a `uuid` to assign to the resource:
 
-    uuid = require("uuid").v4()
+Installation
+================================================================================
 
-Now we can start an initial revision for the resource:
+Sourced is designed for use with [node.js][nodejs], and can be installed using __npm__:
 
-    resource = sourced.resource("User", uuid)
+```
+npm install node-sourced
+```
 
-Let's add two events to the revision. First, the user registered for an account:
 
-    revision.add "Registered",
-      username: "john.doe", email: "john.doe@example.com"
 
-Then, they updated their profile:
 
-    revision.add "ProfileUpdated",
-      name: "John Doe", title: "Software Developer"
+Usage
+================================================================================
 
-Now we have a revision
+* [Example dependencies]
+* [Construct a resource]
+
+
+Example dependencies
+--------------------------------------------------------------------------------
+Examples in this document use assertions to illustrate the behavior and expectations of the underlying functionality.
+
+    assert = require "assert"
+
+The Sourced module contains references to all of the c
+
+    Sourced = require "sourced"
+
+
+Construct a resource
+--------------------------------------------------------------------------------
+Resources represent an aggregate root within your domain. They are composed of a `type` and a `uuid`. To construct a Resource, pass in the property values to the constructor:
+
+    resource = new Sourced.Resource
+      type: 'User',
+      uuid: '0a16934f-be33-483a-a90f-90336d730d1d'
+
+    assert.equal resource.type, 'User'
+    assert.equal resource.uuid, '0a16934f-be33-483a-a90f-90336d730d1d'
+
+If you do not assign a `uuid`, one will be generated for you using the method defined on the Resource prototype. You can customize this method by extending the Resource class:
+
+    class CustomResource extends Sourced.Resource
+      generateUUId: ->
+        '0a16934f-be33-483a-a90f-90336d730d1d'
+
+    resource = new CustomResource type: 'User'
+
+    assert.equal resource.type, 'User'
+    assert.equal resource.uuid, '0a16934f-be33-483a-a90f-90336d730d1d'
+
+If you like, you can extend the Resource class for each of your aggregates. By default, the `type` will be inferred from the constructor name:
+
+    class User extends CustomResource
+
+    user = new User
+
+    assert.equal user.type, 'User'
+    assert.equal user.uuid, '0a16934f-be33-483a-a90f-90336d730d1d'
+
+
+
+
+[nodejs]: "http://www.nodejs.org"
