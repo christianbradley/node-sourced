@@ -1,15 +1,10 @@
-Table of Contents
-================================================================================
+# Table of Contents
 
 * [Installation]
 * [Usage]
-* [API]
 
 
-
-
-Installation
-================================================================================
+# Installation
 
 Sourced is designed for use with [node.js][nodejs], and can be installed using __npm__:
 
@@ -20,15 +15,14 @@ npm install node-sourced
 
 
 
-Usage
-================================================================================
+# Usage
 
 * [Example dependencies]
 * [Construct a resource]
 
 
-Example dependencies
---------------------------------------------------------------------------------
+## Example dependencies
+
 Examples in this document use assertions to illustrate the behavior and expectations of the underlying functionality.
 
     assert = require "assert"
@@ -38,8 +32,8 @@ The Sourced module contains references to all of the c
     Sourced = require "sourced"
 
 
-Construct a resource
---------------------------------------------------------------------------------
+## Construct a resource
+
 Resources represent an aggregate root within your domain. They are composed of a `type` and a `uuid`. To construct a Resource, pass in the property values to the constructor:
 
     resource = new Sourced.Resource
@@ -64,7 +58,7 @@ If you like, you can extend the Resource class for each of your aggregates. By d
 
     class User extends CustomResource
 
-    user = new User
+    user = new User()
 
     assert.equal user.type, 'User'
     assert.equal user.uuid, '0a16934f-be33-483a-a90f-90336d730d1d'
