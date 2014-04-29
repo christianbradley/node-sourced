@@ -1,0 +1,11 @@
+{
+  "name": "sourced",
+  "version": "0.0.0",
+  "description": "Event sourcing in node.js",
+  "main": "index.js",
+  "dependencies": {
+    "uuid": "~1.4.1"
+  },
+  "author": "Christian Bradley <christianbradley@gmail.com> (https://github.com/christianbradley)",
+  "license": "BSD-2-Clause"
+}
