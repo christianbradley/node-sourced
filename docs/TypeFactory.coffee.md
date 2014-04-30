@@ -72,9 +72,9 @@ If an unknown type is requested, the factory throws an [UnknownType] error:
       assert.equal error.message, 'Unknown type: Baz'
       assert.equal error.typeName, 'Baz'
 
-[TypeFactory]: "./api/TypeFactory.html"
-[register]: "./api/TypeFactory.html#register"
-[isRegistered]: "./api/TypeFactory.html#isRegistered"
-[type]: "./api/TypeFactory.html#type"
-[construct]: "./api/TypeFactory.html#construct"
-[UnknownType]: "./api/UnknownType.html"
+[TypeFactory]: ./api/TypeFactory.html
+[register]: ./api/TypeFactory.html#register
+[isRegistered]: ./api/TypeFactory.html#isRegistered
+[type]: ./api/TypeFactory.html#type
+[construct]: ./api/TypeFactory.html#construct
+[UnknownType]: ./api/UnknownType.html
