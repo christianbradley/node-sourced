@@ -1,5 +1,2 @@
-Sourced = exports
-
-Sourced.Resource = require "./resource"
-Sourced.Revision = require "./revision"
-Sourced.MemoryStore = require "./memory-store"
+exports.UnknownType = require './UnknownType'
+exports.TypeFactory = require './TypeFactory'
