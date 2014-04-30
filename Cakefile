@@ -1,7 +1,4 @@
-FS = require 'fs'
 ChildProcess = require 'child_process'
-Util = require 'util'
-Color = require("cli-color")
 
 COFFEE_PATH = "./coffee"
 TESTS_PATH = "./docs"
@@ -35,7 +32,5 @@ watch = (callback) ->
 noop = -> undefined
 
 task 'compile', 'Compile coffee files', -> compile noop
-
 task 'watch', 'Watch coffee files and compile', -> watch noop
-
 task 'test', 'Execute tests', -> test noop
