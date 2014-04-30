@@ -1,6 +1,6 @@
 ## Type Factory
 
-A [TypeFactory] maintains a mapping between type names and constructors to allow for dynamic creation of objects.
+Maintains a mapping between type names and constructors to allow for dynamic creation of objects.
 
     assert = require 'assert'
     Sourced = require 'sourced'
@@ -22,11 +22,11 @@ Let's say we want a factory with the following types:
       sayHello: ()-> "Hi, I'm #{@name}"
 
 
-To register them with the factory, just pass them in as a hash with their names as the keys, using the [register] method:
+To register them with the factory, just pass them in as a hash with their names as the keys:
 
     factory.register User: User, Person: Person
 
-The factory should now know about the registered types, using [isRegistered]:
+The factory should now know about the registered types:
 
     assert factory.isRegistered 'User'
     assert factory.isRegistered 'Person'
@@ -34,13 +34,13 @@ The factory should now know about the registered types, using [isRegistered]:
     assert !factory.isRegistered 'Baz'
 
 ### Retrieving Constructors
-Once registered, constructors can be retrieved using [type]:
+Once registered, constructors can be retrieved using:
 
     assert.equal factory.type('User'), User
     assert.equal factory.type('Person'), Person
 
 ### Constructing Instances
-Generally, you will use a type factory to [construct] instances dynamically:
+Generally, you will use a type factory to construct instances dynamically:
 
     user = factory.construct 'User', username: 'john.doe'
 
@@ -72,9 +72,4 @@ If an unknown type is requested, the factory throws an [UnknownType] error:
       assert.equal error.message, 'Unknown type: Baz'
       assert.equal error.typeName, 'Baz'
 
-[TypeFactory]: ./api/TypeFactory.html
-[register]: ./api/TypeFactory.html#register
-[isRegistered]: ./api/TypeFactory.html#isRegistered
-[type]: ./api/TypeFactory.html#type
-[construct]: ./api/TypeFactory.html#construct
-[UnknownType]: ./api/UnknownType.html
+[UnknownType]: ./UnknownType.coffee.md
