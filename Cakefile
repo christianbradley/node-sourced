@@ -4,33 +4,54 @@ COFFEE_PATH = "./coffee"
 TESTS_PATH = "./docs"
 BUILD_PATH = "./package"
 
-spawn = (command, args, options, callback) ->
+logger = console
+
+# helper methods
+
+noop = (error, results...) ->
+  logger.error error if error?
+
+spawn = (command, args, options, callback = noop) ->
+  str = '• ' + command + ' ' + args.join ' '
+  logger.log str
+
   proc = ChildProcess.spawn command, args, options
 
   proc.stdout.pipe process.stdout
   proc.stderr.pipe process.stderr
 
   proc.on 'error', (error) ->
-    console.error 'An error occurred', error
-    callback error
+    logger.error 'An error occurred', error
+    callback error if callback?
 
   proc.on 'exit', (code, signal) ->
-    callback null, code, signal
+    (callback null, code, signal) if callback?
 
-compile = (callback) ->
+# Task methods
+
+compile = (options, callback = noop) ->
   args = ['-cmo', BUILD_PATH, COFFEE_PATH]
   spawn 'coffee', args, null, callback
 
-test = (callback) ->
-  args = ['-l', TESTS_PATH]
-  spawn 'coffee', args, null, callback
+install = (options, callback = noop) ->
+  spawn 'npm', ['install', BUILD_PATH], null, callback
 
-watch = (callback) ->
+test = (options, callback = noop) ->
+  if options.file?
+    spawn 'coffee', ['-l', options.file], null, callback
+  else
+    args = ['-l', options.file || BUILD_PATH]
+    spawn 'coffee', args, null, callback
+
+watch = (options, callback = noop) ->
   args = ['-cwmo', BUILD_PATH, COFFEE_PATH]
   spawn 'coffee', args, null, callback
 
-noop = -> undefined
 
-task 'compile', 'Compile coffee files', -> compile noop
-task 'watch', 'Watch coffee files and compile', -> watch noop
-task 'test', 'Execute tests', -> test noop
+option '-f', '--file [filename]', 'Use [filename] for the given task'
+option '-v', '--verbose', 'Display additional information'
+
+task 'compile', 'Compile coffee files', compile
+task 'watch', 'Watch coffee files and compile', watch
+task 'install', 'Install the sourced package for testing', install
+task 'test', 'Execute tests', test
