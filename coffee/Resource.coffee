@@ -1,3 +1,5 @@
+NotImplemented = require './NotImplemented'
+
 module.exports = class Resource
 
   constructor: (props = {}) ->
@@ -17,5 +19,8 @@ module.exports = class Resource
   generateUUId: ->
     require('uuid').v4()
 
-  getDomainName: -> null
-  getType: -> null
+  getDomainName: ->
+    throw new NotImplemented
+
+  getType: ->
+    throw new NotImplemented
