@@ -60,16 +60,9 @@ Prototype methods also work as expected:
 
 ### Unknown Types
 
-If an unknown type is requested, the factory throws an [UnknownType] error:
+If an unknown type is requested, the factory throws a [TypeUnknown] error:
 
-    try
-      factory.construct 'Baz', name: 'baz'
-      assert.fail 'Should not get here'
+    assert.throws (-> factory.construct 'Baz'), (error) ->
+      error instanceof Sourced.TypeUnknown
 
-    catch error
-      assert error instanceof Sourced.UnknownType
-      assert.equal error.name, 'UnknownType'
-      assert.equal error.message, 'Unknown type: Baz'
-      assert.equal error.typeName, 'Baz'
-
-[UnknownType]: ./UnknownType.coffee.md
+[TypeUnknown]: ./TypeUnknown.coffee.md
