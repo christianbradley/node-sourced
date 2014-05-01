@@ -1,6 +1,8 @@
 ## Resource
 Represents an aggregate root within a given domain.
 
+    "use strict"
+
     Sourced = require 'sourced'
     Sinon = require 'sinon'
     assert = require 'assert'
