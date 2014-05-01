@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "TypeUnknown.js",
+  "sourceRoot": "..",
+  "sources": [
+    "coffee/TypeUnknown.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,KAAA,mBAAA;KAAA;oSAAA;;CAAA,CAAA,CAAe,IAAA,KAAf,IAAe;;CAAf,CAEM;CAEJ;;CAAa,EAAA,CAAA,CAAA,gBAAC;;GAAQ,KAAR;QACZ;CAAA,EAAY,CAAX,CAAgB,CAAjB,EAAA;CAAA,KACA,GAAA,qCAAA;CAFF,IAAa;;CAAb,EAIa,MAAA,EAAb;CACE,EAAY,CAAX,EAAD,CAAA,CAAY,SAAA;CADD,QAEX,IAAA,iCAAA;CANF,IAIa;;CAJb;;CAFwB;;CAF1B,CAYA,CAAiB,GAAX,CAAN,IAZA;CAAA"
+}

@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "NotImplemented.js",
+  "sourceRoot": "..",
+  "sources": [
+    "coffee/NotImplemented.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,KAAA,4BAAA;KAAA;oSAAA;;CAAA,CAAA,CAAe,IAAA,KAAf,IAAe;;CAAf,CAEA,CAAuB,GAAjB,CAAN;CACE;;;;;CAAA;;CAAA,EAAa,MAAA,EAAb;CACE,GAAoC,EAApC,cAAA;CAAC,EAAU,CAAV,GAAD,QAAA;QADW;CAAb,IAAa;;CAAb;;CAD4C;CAF9C"
+}
