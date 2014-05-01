@@ -1,4 +1,4 @@
-UnknownType = require './UnknownType'
+TypeUnknown = require './TypeUnknown'
 
 module.exports = class TypeFactory
 
@@ -17,7 +17,8 @@ module.exports = class TypeFactory
   type: (name) -> @types[name]
 
   construct: (name, args...) ->
-    throw new UnknownType(name) unless constructor = @type name
+    throw new TypeUnknown(typeName: name) unless @isRegistered name
+    constructor = @type name
     object = Object.create constructor.prototype
     constructor.apply object, args
     return object
