@@ -1,10 +1,30 @@
+throws = -> throw new Error('No callback defined')
 
-# Errors
-exports.SourcedError = require './SourcedError'
-exports.TypeUnknown = require './TypeUnknown'
-exports.NotImplemented = require './NotImplemented'
+class Sourced
+  constructor: (config = {}) ->
+    @storage = config.storage
+    @generateUUId = config.generateUUId if config.generateUUId?
+    @setDefaults()
 
-# Classes
-exports.TypeFactory = require './TypeFactory'
-exports.Resource = require './Resource'
-exports.Event = require './Event'
+  setDefaults: ->
+    @storage = new Sourced.MemoryStorage() unless @storage?
+
+  generateUUId: ->
+    require('uuid').v4()
+
+  createRevision: (type, uuid, version = 0) ->
+    uuid = @generateUUId() unless uuid?
+    new Sourced.Revision
+      resourceType: type,
+      resourceId: uuid,
+      resourceVersion: version
+
+  storeRevision: (revision, callback = throws) ->
+    @storage.store revision, callback
+
+Sourced.Revision = require './Revision'
+Sourced.MemoryStorage = require './MemoryStorage'
+Sourced.RevisionConflict = require './RevisionConflict'
+Sourced.RevisionOutOfSequence = require './RevisionOutOfSequence'
+
+module.exports = Sourced

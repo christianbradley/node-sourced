@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "RevisionConflict.js",
+  "sourceRoot": "..",
+  "sources": [
+    "coffee/RevisionConflict.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,KAAA,UAAA;KAAA;oSAAA;;CAAA,CAAA,CAAuB,GAAjB,CAAN;CACE;;CAAa,EAAA,CAAA,sBAAA;CACX,GAAA,CAAK,CAAL;CAAA,CAC8B,EAA9B,CAAK,CAAL,KAAA,MAAA;CADA,EAEQ,CAAP,EAAD,YAFA;CADF,IAAa;;CAAb;;CAD8C;CAAhD"
+}
