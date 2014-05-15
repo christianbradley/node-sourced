@@ -1,5 +1,4 @@
-module.exports = class RevisionConflict extends Error
-  constructor: () ->
-    Error.call this
-    Error.captureStackTrace this, @constructor
-    @name = 'RevisionConflict'
+SourcedError = require './SourcedError'
+
+module.exports = class RevisionConflict extends SourcedError
+  message: 'A conflict has occurred with an existing revision.'

@@ -4,8 +4,10 @@ module.exports = class SourcedError extends Error
     Error.call this
     Error.captureStackTrace this, @constructor
     @name = props.name
-    @message = props.message
+    @message = props.message if props.message?
     @setDefaults()
 
   setDefaults: ->
     @name = @constructor.name unless @name?
+
+  message: 'An error has occurred.'
