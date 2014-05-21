@@ -1,17 +1,24 @@
 RevisionConflict = require './RevisionConflict'
 RevisionOutOfSequence = require './RevisionOutOfSequence'
 
-throws = -> throw new Error('No callback defined')
-
 module.exports = class MemoryStorage
   constructor: (props = {}) ->
     @collection = props.collection
     @setDefaults()
 
   setDefaults: ->
-    @collection = [] unless @collection?
+    @collection = {} unless @collection?
 
-  store: (revision, callback = throws) ->
+  findRevisions: (type, id, callback) ->
+    revisions = []
+
+    for own key, revision of @collection
+      if revision.resourceType is type and revision.resourceId is id
+        revisions.push revision
+
+    callback null, revisions
+
+  store: (revision, callback) ->
     revisionId = [
         revision.resourceType,
         revision.resourceId,

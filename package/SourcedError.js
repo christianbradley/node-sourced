@@ -14,7 +14,9 @@
       Error.call(this);
       Error.captureStackTrace(this, this.constructor);
       this.name = props.name;
-      this.message = props.message;
+      if (props.message != null) {
+        this.message = props.message;
+      }
       this.setDefaults();
     }
 
@@ -23,6 +25,8 @@
         return this.name = this.constructor.name;
       }
     };
+
+    SourcedError.prototype.message = 'An error has occurred.';
 
     return SourcedError;
 

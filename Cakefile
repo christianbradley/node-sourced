@@ -40,7 +40,7 @@ test = (options, callback = noop) ->
   if options.file?
     spawn 'coffee', ['-l', options.file], null, callback
   else
-    args = ['-l', options.file || BUILD_PATH]
+    args = ['-l', options.file || TESTS_PATH]
     spawn 'coffee', args, null, callback
 
 watch = (options, callback = noop) ->
